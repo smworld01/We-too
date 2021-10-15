@@ -40,7 +40,6 @@
         android:layout_height="77dp"
         android:text="프로필 입력하기"
         android:textSize="25dp"
-        android:background="@drawable/buttonradius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.519"
