@@ -1,0 +1,24 @@
+[33mcommit 3c97987d7bf7ea486884bc650c6df795e4c7b742[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: d1a41dd 74a482f
+Author: carryplz <qlshdh@naver.com>
+Date:   Fri Oct 8 13:46:35 2021 +0900
+
+    Merge branch 'main' of https://github.com/smworld01/We-too
+
+[33mcommit 74a482fa66042bcec9952102fbe42ff0c36e8389[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 8 13:44:00 2021 +0900
+
+    gitignore 변경
+
+[33mcommit d1a41dd636e75cf971ab79bfc414c12cc3febafa[m[33m ([m[1;31morigin/JIC[m[33m)[m
+Author: carryplz <qlshdh@naver.com>
+Date:   Fri Oct 8 13:30:32 2021 +0900
+
+    add 1.txt
+
+[33mcommit 17041d254eb4d259e3e6ca6b912394ee8cd3527f[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Thu Sep 30 20:35:58 2021 +0900
+
+    프로젝트 생성
