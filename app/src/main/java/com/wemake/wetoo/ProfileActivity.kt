@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
-class profile_update : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
 
     lateinit var save : Button
     lateinit var cancel : Button
