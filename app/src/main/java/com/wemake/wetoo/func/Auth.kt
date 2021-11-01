@@ -75,6 +75,7 @@ class Auth(private val activity: AppCompatActivity) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("google_login", "signInWithCredential:success")
                     val user = auth.currentUser
+                    activity.finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("google_login", "signInWithCredential:failure", task.exception)
