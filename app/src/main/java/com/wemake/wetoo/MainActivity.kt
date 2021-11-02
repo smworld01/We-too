@@ -5,19 +5,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wemake.wetoo.func.Auth
 import android.widget.*
+<<<<<<< HEAD
 import com.wemake.wetoo.data.UserProfile
 import com.wemake.wetoo.func.Firebase
+=======
+>>>>>>> origin/kdm
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var btnpro : Button
-    lateinit var btnmat : Button
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> origin/kdm
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         btnpro = findViewById<Button>(R.id.button)
-        btnmat = findViewById<Button>(R.id.button3)
+<<<<<<< HEAD
+
+=======
+
+>>>>>>> origin/kdm
         val user = Auth(this)
 
         if (user.isNotSignIn()) {
@@ -30,17 +41,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+<<<<<<< HEAD
 
-        btnmat.setOnClickListener {
-            val uid = user.getUid()
-            val db = Firebase(this, uid)
-
-            val userProfile = UserProfile(
-                "matching/example"
-//                여기에서 matchREF 값을 변경 matching 컬렉션에서 interest가 같은게 있으면 값을 추가 없으면 새로 생성
-            )
-//            db.updateUserProfile(userProfile)
-        }
-
+=======
+>>>>>>> origin/kdm
     }
 }

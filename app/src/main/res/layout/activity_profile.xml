@@ -43,7 +43,11 @@
         app:layout_constraintVertical_bias="0.114" />
 
     <EditText
+<<<<<<< HEAD
         android:id="@+id/PName"
+=======
+        android:id="@+id/Name"
+>>>>>>> origin/kdm
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_round"
@@ -70,7 +74,11 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <EditText
+<<<<<<< HEAD
         android:id="@+id/PGrade"
+=======
+        android:id="@+id/Grade"
+>>>>>>> origin/kdm
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_round"
@@ -85,9 +93,17 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <TextView
+<<<<<<< HEAD
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+=======
+        android:id="@+id/university"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="대학교:강릉원주대학교"
+>>>>>>> origin/kdm
         android:hint="대학교"
         android:textSize="25dp"
         android:background="@drawable/edit_round"
@@ -98,7 +114,12 @@
         app:layout_constraintVertical_bias="0.392" />
 
     <TextView
+<<<<<<< HEAD
         android:layout_width="120dp"
+=======
+        android:id="@+id/interest"
+        android:layout_width="wrap_content"
+>>>>>>> origin/kdm
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="관심 분야"
@@ -111,6 +132,10 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <TextView
+<<<<<<< HEAD
+=======
+        android:id="@+id/contect"
+>>>>>>> origin/kdm
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -123,12 +148,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.62" />
 
+<<<<<<< HEAD
     <TextView
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_round"
         android:gravity="center"
         android:hint="자기소개"
+=======
+    <EditText
+        android:id="@+id/introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_round"
+        android:gravity="center"
+        android:hint="자기소개(한줄)"
+>>>>>>> origin/kdm
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
