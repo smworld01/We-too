@@ -34,7 +34,8 @@ class LoginActivity : AppCompatActivity() {
                     "smworld02@gmail.com",
                     listOf("게임", "안드로이드"),
                     "https://123.com",
-                    "안녕하세요."
+                    "안녕하세요.",
+                    "조인철."
                 )
                 db.setUserProfile(userProfile)
 

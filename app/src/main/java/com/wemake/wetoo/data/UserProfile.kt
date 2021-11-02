@@ -21,6 +21,7 @@ data class UserProfile(
     val Interests: List<String>? = null,
     val image: String? = null,
     val introduction: String? = null,
+    val name: String? = null,
     val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
     val matchRef: DocumentSnapshot? = null, // 팀에 대한 경로 없으면 null
 )
