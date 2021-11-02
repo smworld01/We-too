@@ -40,4 +40,10 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
             "visibility" to if(visibility) "Public" else "Private"
         ))
     }
+
+//    fun setMatchingTable(){
+//        if (uid === null) return null
+//
+//        db.collection("profiles").document(uid).get().result.data['Inte']
+//    }
 }

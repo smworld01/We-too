@@ -15,18 +15,18 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 
 data class UserProfile(
-<<<<<<< HEAD
-    val university: String? = null,
-    val grade: Int? = null,
-    val email: String? = null,
-    val Interests: List<String>? = null,
-    val image: String? = null,
-    val introduction: String? = null,
-    val name: String? = null,
-    val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
-    val matchRef: DocumentSnapshot? = null, // 팀에 대한 경로 없으면 null
-)
-=======
+//
+//    val university: String? = null,
+//    val grade: Int? = null,
+//    val email: String? = null,
+//    val Interests: List<String>? = null,
+//    val image: String? = null,
+//    val introduction: String? = null,
+//    val name: String? = null,
+//    val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
+//    val matchRef: DocumentSnapshot? = null, // 팀에 대한 경로 없으면 null
+//)
+//=======
     var university: String? = null,
     var name: String? = null,
     var grade: String? = null,
@@ -40,5 +40,4 @@ data class UserProfile(
     val introduction: String? = null,
     val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
     val matchRef: DocumentSnapshot? = null, // 팀에 대한 경로 없으면 null
-) {}
->>>>>>> origin/kdm
+)
