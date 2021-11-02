@@ -56,4 +56,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-firestore-ktx'
 
+    // Firebase image storage
+    implementation 'com.google.firebase:firebase-storage'
 }
