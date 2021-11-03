@@ -26,10 +26,10 @@ class ProfileActivity : AppCompatActivity() {
 
         initLayout()
 
-        var university = findViewById<TextView>(R.id.university)
         var name = findViewById<EditText>(R.id.Name)
         var grade = findViewById<EditText>(R.id.Grade)
         var interest = findViewById<TextView>(R.id.interest)
+        var introduction = findViewById<EditText>(R.id.introduction)
 
         interest.setOnClickListener {
             var FieldArray = arrayOf("안드로이드", "게임", "보안", "웹", "서버", "AI", "임베디드", "소프트웨어", "DB", "디자인")
@@ -82,8 +82,13 @@ class ProfileActivity : AppCompatActivity() {
 
                 userInfo.name = name.text.toString()
                 userInfo.grade = grade.text.toString()
+                userInfo.university = "강릉원주대학교"
+                userInfo.ktid = KakaoTalkId.toString()
+                userInfo.ktoid = KakaoTalkOpenId.toString()
+                userInfo.tel = Tel.toString()
                 userInfo.email = Email.toString()
                 userInfo.interest = interest.text.toString()
+                userInfo.introduction = introduction.text.toString()
                 fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(userInfo)
             }
             finish()
