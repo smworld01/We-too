@@ -1,5 +1,6 @@
 package com.wemake.wetoo.func
 
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
@@ -41,9 +42,15 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         ))
     }
 
-//    fun setMatchingTable(){
+    fun setMatchingTable() {
 //        if (uid === null) return null
-//
-//        db.collection("profiles").document(uid).get().result.data['Inte']
-//    }
+
+       db.collection("profiles").document(uid!!).get().addOnSuccessListener {
+           val data = it.data?.get("interests")
+           Log.e("asd", "$data")
+           db.collection("matching").whereEqualTo("interests", data).addSnapshotListener { value, error ->
+               Log.e("asdf", "${value?.documents?.size}")
+           }
+       }
+    }
 }
