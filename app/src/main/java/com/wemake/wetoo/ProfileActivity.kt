@@ -122,7 +122,6 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-
-    }
+}
 
 

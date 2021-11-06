@@ -10,13 +10,18 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.toObject
 import com.wemake.wetoo.data.UserProfile
 import com.wemake.wetoo.func.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var btnpro : Button
     lateinit var btnmat : Button
-
+    lateinit var db : Firebase
+    var uid : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +31,11 @@ class MainActivity : AppCompatActivity() {
         btnmat = findViewById<Button>(R.id.button3)
 
         val user = Auth(this)
+        uid = user.getUid()
+        db = Firebase(this, uid)
 
         if (user.isNotSignIn()) {
             val intent = Intent(this, LoginActivity::class.java)
-
             startActivity(intent)
         }
 
@@ -39,10 +45,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnmat.setOnClickListener {
-            val uid = user.getUid()
-            val db = Firebase(this, uid)
 
-            db.setMatchingTable()
+            val scope = CoroutineScope(Job() + Dispatchers.Main)
+            scope.launch {
+                if(db.isMatching()) {
+                    Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
+                }else{
+                    db.matching()
+                }
+            }
+
+
             val userProfile = UserProfile(
 //                db.collection("profiles").document(uid)
 //                여기에서 matchREF 값을 변경 matching 컬렉션에서 interest가 같은게 있으면 값을 추가 없으면 새로 생성

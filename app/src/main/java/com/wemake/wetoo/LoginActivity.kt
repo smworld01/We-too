@@ -27,37 +27,6 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 val uid = user.getUid()
                 val db = Firebase(this, uid)
-
-
-//                val userProfile = UserProfile(
-//                    "강릉원주대학교",
-//                    4,
-//                    "smworld02@gmail.com",
-//                    listOf("게임", "안드로이드"),
-//                    "https://123.com",
-//                    "안녕하세요.",
-//                    "조인철."
-//                )
-//                db.setUserProfile(userProfile)
-
-                /*val userProfile = UserProfile(
-                    "강릉원주대학교",
-                    "4",
-                    "smworld02@gmail.com",
-                    listOf("게임", "안드로이드"),
-                    "https://123.com",
-                    "안녕하세요."
-                )
-                db.setUserProfile(userProfile)*/
-
-
-//                프로필 읽기
-//                db.getUserProfile()?.addOnSuccessListener { documentSnapshot ->
-//                    val userProfile = documentSnapshot.toObject<UserProfile>()
-//                    Log.e("get", "$userProfile")
-//                }
-
-
             }
         }
     }
