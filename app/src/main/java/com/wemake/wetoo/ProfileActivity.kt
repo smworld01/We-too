@@ -20,8 +20,8 @@ import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    var fbAuth : FirebaseAuth? = null
-    var fbFirestore : FirebaseFirestore? = null
+    var fbAuth: FirebaseAuth? = null
+    var fbFirestore: FirebaseFirestore? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,7 +121,4 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
     }
-
 }
-
-
