@@ -27,12 +27,8 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        initLayout()
-
         fbAuth = FirebaseAuth.getInstance()
         fbFirestore = FirebaseFirestore.getInstance()
-
-        var nameT : String? = null
 
         val db = fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())
         db?.get()?.addOnSuccessListener { documentSnapshot ->
@@ -104,21 +100,18 @@ class ProfileActivity : AppCompatActivity() {
                 fbAuth = FirebaseAuth.getInstance()
                 fbFirestore = FirebaseFirestore.getInstance()
 
-                if (true) {
-                    var userInfo = UserProfile()
+                var userInfo = UserProfile()
 
-                    userInfo.name = name.text.toString()
-                    userInfo.grade = grade.text.toString()
-                    userInfo.university = "강릉원주대학교"
-                    userInfo.ktid = KakaoTalkId.toString()
-                    userInfo.ktoid = KakaoTalkOpenId.toString()
-                    userInfo.tel = Tel.toString()
-                    userInfo.email = Email.toString()
-                    userInfo.interest = interest.text.toString()
-                    userInfo.introduction = introduction.text.toString()
-                    fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())
-                        ?.set(userInfo)
-                }
+                userInfo.name = name.text.toString()
+                userInfo.grade = grade.text.toString()
+                userInfo.university = "강릉원주대학교"
+                userInfo.ktid = KakaoTalkId.toString()
+                userInfo.ktoid = KakaoTalkOpenId.toString()
+                userInfo.tel = Tel.toString()
+                userInfo.email = Email.toString()
+                userInfo.interest = interest.text.toString()
+                userInfo.introduction = introduction.text.toString()
+                fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(userInfo)
                 finish()
             }
 
@@ -128,27 +121,4 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun initLayout() {
-
-
-        /*fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.get()?.addOnSuccessListener { result ->
-            for(document in result) {
-                Log.d(TAG, "${document.id} => ${document.data}")
-                Toast.makeText(applicationContext, document.id, Toast.LENGTH_SHORT).show()
-            }
-        }*///users profile data 가져오기
-        /*val db = fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())
-        db?.get()?.addOnSuccessListener { document ->
-            if(document != null) {
-                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-            } else {
-                Log.d(TAG, "No such document")
-            }
-        }
-            ?.addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }*/
-    }
-
 }
