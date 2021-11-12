@@ -112,6 +112,7 @@ class ProfileActivity : AppCompatActivity() {
                 userInfo.interest = interest.text.toString()
                 userInfo.introduction = introduction.text.toString()
                 fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(userInfo)
+
                 finish()
             }
 

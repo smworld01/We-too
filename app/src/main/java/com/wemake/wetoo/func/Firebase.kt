@@ -57,14 +57,26 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                value?.let { v ->
                    if (v.documents.size == 0) {
                        val mt = MatchTable(data as String?, mutableListOf(it.reference), mutableListOf("waiting"))
-                       db.collection("matching").add(mt)
+                       val db = db.collection("matching").document()
+                       db.set(mt)
+                       it.reference.update("matchRef", db.path)
                    } else {
-                       val mt = v.documents[0].toObject<MatchTable>()
-                       mt?.users?.add(it.reference)
-                       mt?.approvals?.add("waiting")
-                       v.documents[0].reference.update("users", mt?.users)
-                       v.documents[0].reference.update("approvals", mt?.approvals)
-                       it.reference.update("matchRef", v.documents[0].reference)
+//                       val mt = v.documents[0].toObject<MatchTable>()!!
+                       v.documents.forEach { table ->
+                           val mt = table.toObject<MatchTable>()!!
+                           if(mt.users!!.size < 4){
+                               mt.users?.add(it.reference)
+                               mt.approvals?.add("waiting")
+                               table.reference.update("users", mt.users)
+                               table.reference.update("approvals", mt.approvals)
+                               it.reference.update("matchRef", table.reference)
+                               return@forEach
+                           }
+                       }
+                       val mt = MatchTable(data as String?, mutableListOf(it.reference), mutableListOf("waiting"))
+                       val db = db.collection("matching").document()
+                       db.set(mt)
+                       it.reference.update("matchRef", db.path)
                    }
                }
 
@@ -73,7 +85,37 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
        }
     }
 
+    fun matchAgree(){
+        db.collection("matching").document(uid!!).get().addOnSuccessListener{
+            val query = db.collection("matching").whereEqualTo("users", uid).get()
+            query.addOnSuccessListener { value ->
+//                val mt = value.documents[].toObject<MatchTable>()
+//                mt?.approvals?.add("agree")
+//                value.documents[].reference.update("approvals", mt?.approvals)
+            }
+//            인덱스의 값을 가져와서 수정하면 될듯
+        }
+    }
+
+    fun matchDisagree(){
+        db.collection("matching").document(uid!!).get().addOnSuccessListener{
+            val query = db.collection("matching").whereEqualTo("users", uid).get()
+            query.addOnSuccessListener { value ->
+//                val mt = value.documents[].toObject<MatchTable>()
+//                mt?.approvals?.add("disagree")
+//                value.documents[].reference.update("approvals", mt?.approvals)
+            }
+//            인덱스의 값을 가져와서 수정하면 될듯
+        }
+    }
+
+    fun teamBuild(){
+//        여기에서 approvals의 값이 모두 수락이면 이제 team 문서로 옮기고 matching에 있는 것 삭제
+    }
+
     suspend fun isMatching():Boolean{
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
+
+
 }
