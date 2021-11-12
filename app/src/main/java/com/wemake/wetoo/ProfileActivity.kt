@@ -15,7 +15,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.wemake.wetoo.data.UserProfile
 import com.wemake.wetoo.func.Auth
 import com.wemake.wetoo.func.Firebase
-import kotlinx.android.synthetic.main.activity_profile.*
+//import kotlinx.android.synthetic.main.activity_profile.*
 import java.nio.file.attribute.UserPrincipal
 import java.util.*
 
@@ -43,9 +43,6 @@ class ProfileActivity : AppCompatActivity() {
             var interest = findViewById<TextView>(R.id.interest)
             var introduction = findViewById<EditText>(R.id.introduction)
 
-
-
-
             name.setText(user?.name)
             grade.setText(user?.grade)
             university.setText(user?.university)
@@ -65,10 +62,10 @@ class ProfileActivity : AppCompatActivity() {
 
 
             var contact = findViewById<TextView>(R.id.contact)
-            var KakaoTalkId: String? = ""
-            var KakaoTalkOpenId: String? = ""
-            var Tel: String? = ""
-            var Email: String? = ""
+            var KakaoTalkId: String?
+            var KakaoTalkOpenId: String?
+            var Tel: String?
+            var Email: String?
 
             KakaoTalkId = user?.ktid
             KakaoTalkOpenId = user?.ktoid
@@ -99,7 +96,7 @@ class ProfileActivity : AppCompatActivity() {
                     Email = dlgEmail.text.toString()
                     contact.setText(KakaoTalkId)
                 }
-                dlg.setNegativeButton("취소", null)
+                dlg.setNegativeButton("취소",null)
                 dlg.show()
             }
 
