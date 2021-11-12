@@ -15,6 +15,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.wemake.wetoo.data.UserProfile
 import com.wemake.wetoo.func.Auth
 import com.wemake.wetoo.func.Firebase
+import kotlinx.android.synthetic.main.activity_profile.*
 import java.nio.file.attribute.UserPrincipal
 import java.util.*
 
@@ -22,6 +23,7 @@ class ProfileActivity : AppCompatActivity() {
 
     var fbAuth: FirebaseAuth? = null
     var fbFirestore: FirebaseFirestore? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class ProfileActivity : AppCompatActivity() {
         fbFirestore = FirebaseFirestore.getInstance()
 
         val db = fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())
+
         db?.get()?.addOnSuccessListener { documentSnapshot ->
             val user = documentSnapshot.toObject<UserProfile>()
 
@@ -39,6 +42,9 @@ class ProfileActivity : AppCompatActivity() {
             var university = findViewById<TextView>(R.id.university)
             var interest = findViewById<TextView>(R.id.interest)
             var introduction = findViewById<EditText>(R.id.introduction)
+
+
+
 
             name.setText(user?.name)
             grade.setText(user?.grade)
@@ -57,7 +63,8 @@ class ProfileActivity : AppCompatActivity() {
                 dlg.show()
             }
 
-            var contect = findViewById<TextView>(R.id.contect)
+
+            var contact = findViewById<TextView>(R.id.contact)
             var KakaoTalkId: String? = ""
             var KakaoTalkOpenId: String? = ""
             var Tel: String? = ""
@@ -68,7 +75,7 @@ class ProfileActivity : AppCompatActivity() {
             Tel = user?.tel
             Email = user?.email
 
-            contect.setOnClickListener {
+            contact.setOnClickListener {
                 var dialogView = View.inflate(this, R.layout.contact, null)
                 var dlg = AlertDialog.Builder(this)
 
@@ -85,15 +92,17 @@ class ProfileActivity : AppCompatActivity() {
                 if (!Tel.isNullOrEmpty()) dlgTel.setText(Tel)
                 if (!Email.isNullOrEmpty()) dlgEmail.setText(Email)
 
-                dlg.setNegativeButton("확인") { _, which ->
+                dlg.setPositiveButton("확인") { _, which ->
                     KakaoTalkId = dlgKakaoTalkId.text.toString()
                     KakaoTalkOpenId = dlgKakaoTalkOpenId.text.toString()
                     Tel = dlgTel.text.toString()
                     Email = dlgEmail.text.toString()
+                    contact.setText(KakaoTalkId)
                 }
-                dlg.setPositiveButton("취소", null)
+                dlg.setNegativeButton("취소", null)
                 dlg.show()
             }
+
 
             var save = findViewById<Button>(R.id.btnsave)
             save.setOnClickListener {
@@ -104,7 +113,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 userInfo.name = name.text.toString()
                 userInfo.grade = grade.text.toString()
-                userInfo.university = "강릉원주대학교"
+                userInfo.university = " 강릉원주대학교 "
                 userInfo.ktid = KakaoTalkId.toString()
                 userInfo.ktoid = KakaoTalkOpenId.toString()
                 userInfo.tel = Tel.toString()
@@ -114,12 +123,13 @@ class ProfileActivity : AppCompatActivity() {
                 fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(userInfo)
 
                 finish()
+                }
+            contact.setText(KakaoTalkId)
             }
 
-            var cancel = findViewById<Button>(R.id.btncnl)
-            cancel.setOnClickListener {
-                finish()
-            }
+        var cancel = findViewById<Button>(R.id.btncnl)
+        cancel.setOnClickListener {
+            finish()
         }
     }
 }
