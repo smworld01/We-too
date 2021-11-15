@@ -1,6 +1,7 @@
 package com.wemake.wetoo
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.widget.*
 import android.view.*
@@ -21,10 +22,8 @@ import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    var fbAuth: FirebaseAuth? = null
-    var fbFirestore: FirebaseFirestore? = null
-
-
+    private var fbAuth: FirebaseAuth? = null
+    private var fbFirestore: FirebaseFirestore? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -43,34 +42,30 @@ class ProfileActivity : AppCompatActivity() {
             var interest = findViewById<TextView>(R.id.interest)
             var introduction = findViewById<EditText>(R.id.introduction)
 
-            name.setText(user?.name)
-            grade.setText(user?.grade)
-            university.setText(user?.university)
-            interest.setText(user?.interest)
+            name.setText(user?.name).toString()
+            grade.setText(user?.grade).toString()
+            university.text = user?.university
+            interest.text = user?.interest
             introduction.setText(user?.introduction)
 
             interest.setOnClickListener {
-                var FieldArray =
+                var interestField =
                     arrayOf("안드로이드", "게임", "보안", "웹", "서버", "AI", "임베디드", "소프트웨어", "DB", "디자인")
                 var dlg = AlertDialog.Builder(this)
                 dlg.setTitle("관심분야")
-                dlg.setItems(FieldArray) { _, which ->
-                    interest.text = FieldArray[which]
+                dlg.setItems(interestField) { _, which ->
+                    interest.text = interestField[which]
                 }
                 dlg.show()
             }
 
 
             var contact = findViewById<TextView>(R.id.contact)
-            var KakaoTalkId: String?
-            var KakaoTalkOpenId: String?
-            var Tel: String?
-            var Email: String?
 
-            KakaoTalkId = user?.ktid
-            KakaoTalkOpenId = user?.ktoid
-            Tel = user?.tel
-            Email = user?.email
+            ktId = user?.ktid
+            ktoId = user?.ktoid
+            tel = user?.tel
+            email = user?.email
 
             contact.setOnClickListener {
                 var dialogView = View.inflate(this, R.layout.contact, null)
@@ -89,7 +84,10 @@ class ProfileActivity : AppCompatActivity() {
                 if (!Tel.isNullOrEmpty()) dlgTel.setText(Tel)
                 if (!Email.isNullOrEmpty()) dlgEmail.setText(Email)
 
-                dlg.setPositiveButton("확인") { _, which ->
+                dlg.setPositiveButton("저장") { _, which ->
+                    if(dlgKakaoTalkId.getText().toString() == "") {
+                        contactEvent()
+                    }
                     KakaoTalkId = dlgKakaoTalkId.text.toString()
                     KakaoTalkOpenId = dlgKakaoTalkOpenId.text.toString()
                     Tel = dlgTel.text.toString()
@@ -107,6 +105,7 @@ class ProfileActivity : AppCompatActivity() {
                 fbFirestore = FirebaseFirestore.getInstance()
 
                 var userInfo = UserProfile()
+                var check = 0
 
                 userInfo.name = name.text.toString()
                 userInfo.grade = grade.text.toString()
@@ -128,5 +127,18 @@ class ProfileActivity : AppCompatActivity() {
         cancel.setOnClickListener {
             finish()
         }
+    }
+
+    private fun contactEvent() {
+        val view = View.inflate(this,R.layout.alert_popup,null)
+        val textView: TextView = view.findViewById(R.id.Tv)
+        textView.text = "필수 입력 항목을 확인해주세요"
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setPositiveButton("확인") { dialog, which -> }
+            .create()
+
+        alertDialog.setView(view)
+        alertDialog.show()
     }
 }
