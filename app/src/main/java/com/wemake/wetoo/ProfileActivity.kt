@@ -154,11 +154,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun selectGallery() {
-        var writePermission =
-            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        var readPermission =
-            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-
         var intent = Intent(Intent.ACTION_PICK)
         intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         intent.type = "image/*"
