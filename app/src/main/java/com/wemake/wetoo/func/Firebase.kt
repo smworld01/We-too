@@ -45,7 +45,7 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         ))
     }
 
-    fun matching() {
+    suspend fun matching() {
 //        if (uid === null) return null
 
        db.collection("users").document(uid!!).get().addOnSuccessListener {
@@ -57,11 +57,11 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                value?.let { v ->
                    if (v.documents.size == 0) {
                        val mt = MatchTable(data as String?, mutableListOf(it.reference), mutableListOf("waiting"))
-                       val db = db.collection("matching").document()
-                       db.set(mt)
-                       it.reference.update("matchRef", db.path)
+                       val collection = db.collection("matching")
+                       collection.add(mt).addOnSuccessListener { documentReference ->
+                           it.reference.update("matchRef", documentReference)
+                       }
                    } else {
-//                       val mt = v.documents[0].toObject<MatchTable>()!!
                        v.documents.forEach { table ->
                            val mt = table.toObject<MatchTable>()!!
                            if(mt.users!!.size < 4){
@@ -73,10 +73,6 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                                return@forEach
                            }
                        }
-                       val mt = MatchTable(data as String?, mutableListOf(it.reference), mutableListOf("waiting"))
-                       val db = db.collection("matching").document()
-                       db.set(mt)
-                       it.reference.update("matchRef", db.path)
                    }
                }
 
@@ -85,27 +81,33 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
        }
     }
 
-    fun matchAgree(){
-        db.collection("matching").document(uid!!).get().addOnSuccessListener{
-            val query = db.collection("matching").whereEqualTo("users", uid).get()
-            query.addOnSuccessListener { value ->
-//                val mt = value.documents[].toObject<MatchTable>()
-//                mt?.approvals?.add("agree")
-//                value.documents[].reference.update("approvals", mt?.approvals)
+    suspend fun matchAgree(){
+        getUserProfile()?.await()?.apply {
+            val profileReference = reference
+            val profile = toObject<UserProfile>()!!
+            profile.matchRef?.get()?.await()?.apply {
+                val mt = toObject<MatchTable>()!!
+                mt.users?.indexOf(profileReference)?.let {
+                    mt.approvals?.set(it, "agree")
+                }
+                reference.update("approvals", mt.approvals)
+
             }
-//            인덱스의 값을 가져와서 수정하면 될듯
         }
     }
 
-    fun matchDisagree(){
-        db.collection("matching").document(uid!!).get().addOnSuccessListener{
-            val query = db.collection("matching").whereEqualTo("users", uid).get()
-            query.addOnSuccessListener { value ->
-//                val mt = value.documents[].toObject<MatchTable>()
-//                mt?.approvals?.add("disagree")
-//                value.documents[].reference.update("approvals", mt?.approvals)
+    suspend fun matchDisagree(){
+        getUserProfile()?.await()?.apply {
+            val profileReference = reference
+            val profile = toObject<UserProfile>()!!
+            profile.matchRef?.get()?.await()?.apply {
+                val mt = toObject<MatchTable>()!!
+                mt.users?.indexOf(profileReference)?.let {
+                    mt.approvals?.set(it, "disagree")
+                }
+                reference.update("approvals", mt.approvals)
+
             }
-//            인덱스의 값을 가져와서 수정하면 될듯
         }
     }
 
@@ -114,6 +116,7 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
     }
 
     suspend fun isMatching():Boolean{
+        getUserProfile()?.result?.reference
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
 

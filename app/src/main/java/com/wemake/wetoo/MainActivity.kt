@@ -10,10 +10,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.toObject
 import com.wemake.wetoo.data.UserProfile
 import com.wemake.wetoo.func.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var db : Firebase
     var uid : String? = null
 
+    private var matchingAsync : Deferred<Unit>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,23 +42,27 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val scope = CoroutineScope(Job() + Dispatchers.Main)
+
         btnmat.setOnClickListener {
 
-            val scope = CoroutineScope(Job() + Dispatchers.Main)
-            scope.launch {
-                if(db.isMatching()) {
-                    Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
-                }else{
-                    db.matching()
+
+            if(matchingAsync == null) {
+                matchingAsync = scope.async {
+                    if (db.isMatching()) {
+                        Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        db.matching()
+                    }
                 }
+            }else{
+                Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
             }
 
+//        scope.launch {
+//            db.matchAgree()
+//        }
 
-            val userProfile = UserProfile(
-//                db.collection("profiles").document(uid)
-//                여기에서 matchREF 값을 변경 matching 컬렉션에서 interest가 같은게 있으면 값을 추가 없으면 새로 생성
-            )
-//            db.setUserProfile(userProfile)
         }
 
 

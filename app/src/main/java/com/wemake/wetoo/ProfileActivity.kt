@@ -35,8 +35,9 @@ class ProfileActivity : AppCompatActivity() {
         val db = fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())
 
         db?.get()?.addOnSuccessListener { documentSnapshot ->
+            Log.e("test","{$documentSnapshot}")
             val user = documentSnapshot.toObject<UserProfile>()
-
+            Log.e("test","2")
             var name = findViewById<EditText>(R.id.Name)
             var grade = findViewById<EditText>(R.id.Grade)
             var university = findViewById<TextView>(R.id.university)
