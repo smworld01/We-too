@@ -13,10 +13,10 @@ data class UserProfile(
     var ktoid: String? = null,
     var tel: String? = null,
     var interest: String? = null, // 관심분야
-    val image: String? = null,
     var introduction: String? = null, // 자기소개
     val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
     val matchRef: DocumentReference? = null, // 팀에 대한 경로 없으면 null
+    var imageUrl : String? = ""
 )
 
 data class MatchTable(
