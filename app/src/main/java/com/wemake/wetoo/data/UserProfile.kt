@@ -15,5 +15,5 @@ data class UserProfile(
     val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
     val matchRef: DocumentReference? = null, // 팀에 대한 경로 없으면 null
     var imageUrl : String? = "",
-    val fcm_token: String
+    val fcm_token: String? = ""
 )

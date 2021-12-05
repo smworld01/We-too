@@ -15,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.wemake.wetoo.MainActivity
+import com.wemake.wetoo.R
 
 
 class WeTooFirebaseMessagingService : FirebaseMessagingService() {
@@ -24,6 +25,7 @@ class WeTooFirebaseMessagingService : FirebaseMessagingService() {
         super.onNewToken(token)
         val uid = Firebase.auth.uid
 
+        Log.e("test", token)
         if (uid != null) {
             db.collection("users").document(uid)
                 .update(mapOf("fcm_token" to token))
@@ -67,6 +69,7 @@ class WeTooFirebaseMessagingService : FirebaseMessagingService() {
             .setAutoCancel(true)
             .setSound(soundUri) // 알림 소리
             .setContentIntent(pendingIntent) // 알림 실행 시 Intent
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

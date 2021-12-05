@@ -20,6 +20,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.*
 import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import com.wemake.wetoo.data.UserProfile
 import java.util.*
@@ -123,7 +124,8 @@ class ProfileActivity : AppCompatActivity() {
             save.setOnClickListener {
                 val uid = Firebase.auth.currentUser!!.uid
 
-                FirebaseInstallations.getInstance().getToken(false).addOnSuccessListener {
+                FirebaseMessaging.getInstance().token.addOnSuccessListener {
+
                     var userInfo = UserProfile(
                         name = name.text.toString(),
                         grade = grade.text.toString(),
@@ -135,8 +137,9 @@ class ProfileActivity : AppCompatActivity() {
                         interest = interest.text.toString(),
                         introduction = introduction.text.toString(),
                         imageUrl = url,
-                        fcm_token = it.token
+                        fcm_token = it
                     )
+                    Log.e("test", it)
 
                     Firebase.firestore.collection("users").document(uid).set(userInfo)
                     imageUp()
