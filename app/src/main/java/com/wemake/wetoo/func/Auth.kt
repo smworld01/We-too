@@ -11,6 +11,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.installations.FirebaseInstallations
 import com.google.firebase.ktx.Firebase
 import com.wemake.wetoo.R
 
@@ -75,6 +77,14 @@ class Auth(private val activity: AppCompatActivity) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("google_login", "signInWithCredential:success")
                     val user = auth.currentUser
+                    val uid = user!!.uid
+                    val db = Firebase.firestore
+
+                    FirebaseInstallations.getInstance().getToken(false).addOnSuccessListener {
+                        db.collection("users").document(uid)
+                            .update(mapOf("fcm_token" to it.token))
+                    }
+
                     activity.finish()
                 } else {
                     // If sign in fails, display a message to the user.

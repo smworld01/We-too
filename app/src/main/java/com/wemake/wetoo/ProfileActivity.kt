@@ -15,7 +15,6 @@ import android.util.*
 import androidx.appcompat.app.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +22,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.*
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
-
+import com.bumptech.glide.Glide
 import com.wemake.wetoo.data.UserProfile
 import com.wemake.wetoo.func.Auth
 import com.wemake.wetoo.func.Firebase

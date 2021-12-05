@@ -3,7 +3,6 @@ package com.wemake.wetoo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.R
 import com.wemake.wetoo.func.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
