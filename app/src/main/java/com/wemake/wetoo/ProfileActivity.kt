@@ -2,32 +2,26 @@ package com.wemake.wetoo
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.*
-import android.view.*
 import android.util.*
+import android.view.*
+import android.widget.*
 import androidx.appcompat.app.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.gms.tasks.Task
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.*
-import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.bumptech.glide.Glide
 import com.wemake.wetoo.data.UserProfile
-import com.wemake.wetoo.func.Auth
-import com.wemake.wetoo.func.Firebase
-import java.nio.file.attribute.UserPrincipal
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
@@ -127,21 +121,26 @@ class ProfileActivity : AppCompatActivity() {
 
             var save = findViewById<Button>(R.id.btnsave)
             save.setOnClickListener {
+                val uid = Firebase.auth.currentUser!!.uid
 
-                var userInfo = UserProfile()
+                FirebaseInstallations.getInstance().getToken(false).addOnSuccessListener {
+                    var userInfo = UserProfile(
+                        name = name.text.toString(),
+                        grade = grade.text.toString(),
+                        university = " 강릉원주대학교 ",
+                        ktid = ktId,
+                        ktoid = ktoId,
+                        tel = tel,
+                        email = email,
+                        interest = interest.text.toString(),
+                        introduction = introduction.text.toString(),
+                        imageUrl = url,
+                        fcm_token = it.token
+                    )
 
-                userInfo.name = name.text.toString()
-                userInfo.grade = grade.text.toString()
-                userInfo.university = " 강릉원주대학교 "
-                userInfo.ktid = ktId
-                userInfo.ktoid = ktoId
-                userInfo.tel = tel
-                userInfo.email = email
-                userInfo.interest = interest.text.toString()
-                userInfo.introduction = introduction.text.toString()
-                userInfo.imageUrl = url
-                fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.set(userInfo)
-                imageUp()
+                    Firebase.firestore.collection("users").document(uid).set(userInfo)
+                    imageUp()
+                }
 
                 finish()
                 }

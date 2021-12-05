@@ -76,14 +76,6 @@ class Auth(private val activity: AppCompatActivity) {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("google_login", "signInWithCredential:success")
-                    val user = auth.currentUser
-                    val uid = user!!.uid
-                    val db = Firebase.firestore
-
-                    FirebaseInstallations.getInstance().getToken(false).addOnSuccessListener {
-                        db.collection("users").document(uid)
-                            .update(mapOf("fcm_token" to it.token))
-                    }
 
                     activity.finish()
                 } else {

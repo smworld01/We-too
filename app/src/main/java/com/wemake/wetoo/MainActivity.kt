@@ -46,24 +46,20 @@ class MainActivity : AppCompatActivity() {
 
         btnmat.setOnClickListener {
 
-            if(matchingAsync == null) {
+            if (matchingAsync == null) {
                 matchingAsync = scope.async {
-                    Log.e("test","0")
+                    Log.e("test", "0")
                     if (db.isMatching()) {
-                        Log.e("test","1")
+                        Log.e("test", "1")
                         Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
                     } else {
-                        Log.e("test","2")
+                        Log.e("test", "2")
                         db.matching()
                     }
                 }
-            }else{
+            } else {
                 Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
             }
-
         }
-
-
-
     }
 }
