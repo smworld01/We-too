@@ -192,16 +192,18 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun imageUp() {
+        val imgFileName = fbAuth?.uid + ".png"
+        val storageRef = fbStorage?.reference?.child("profiles/images")?.child(imgFileName)
 
-        var imgFileName = fbAuth?.uid + ".png"
-        var storageRef = fbStorage?.reference?.child("profiles/images")?.child(imgFileName)
-        storageRef?.putFile(uriPhoto!!)?.addOnSuccessListener {
-            storageRef.downloadUrl.addOnSuccessListener { uri ->
+        uriPhoto?.let {
+            storageRef?.putFile(it)?.addOnSuccessListener {
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
 
-                var userInfo = UserProfile()
-                userInfo.imageUrl = uri.toString()
+                    val userInfo = UserProfile()
+                    userInfo.imageUrl = uri.toString()
 
-                fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.update("imageUrl",userInfo.imageUrl.toString())
+                    fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())?.update("imageUrl",userInfo.imageUrl.toString())
+                }
             }
         }
     }
