@@ -15,6 +15,8 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.wemake.wetoo.MainActivity
+import com.wemake.wetoo.MatchingActivity
+import com.wemake.wetoo.ProfileActivity
 import com.wemake.wetoo.R
 
 
@@ -37,6 +39,7 @@ class WeTooFirebaseMessagingService : FirebaseMessagingService() {
         if(remoteMessage.data.isNotEmpty()){
             Log.i("바디: ", remoteMessage.data["body"].toString())
             Log.i("타이틀: ", remoteMessage.data["title"].toString())
+            Log.i("액티비티:", remoteMessage.data["clickAction"].toString())
             sendNotification(remoteMessage)
         }
 
@@ -52,7 +55,13 @@ class WeTooFirebaseMessagingService : FirebaseMessagingService() {
 
         // 일회용 PendingIntent
         // PendingIntent : Intent 의 실행 권한을 외부의 어플리케이션에게 위임한다.
-        val intent = Intent(this, MainActivity::class.java)
+
+        val intent = when (remoteMessage.data["clickAction"].toString()) {
+            "MatchingActivity" -> Intent(this, MatchingActivity::class.java)
+            "TeamActivity" -> Intent(this, ProfileActivity::class.java)
+            else -> Intent(this, MainActivity::class.java)
+        }
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Activity Stack 을 경로만 남긴다. A-B-C-D-B => A-B
         val pendingIntent = PendingIntent.getActivity(this, uniId, intent, PendingIntent.FLAG_ONE_SHOT)
 
