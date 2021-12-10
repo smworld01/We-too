@@ -1,10 +1,8 @@
 package com.wemake.wetoo.data
 
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 
 data class UserProfile(
-
     var university: String? = null,
     var name: String? = null,
     var grade: String? = null,
@@ -16,11 +14,6 @@ data class UserProfile(
     var introduction: String? = null, // 자기소개
     val visibility: String = "Private", // 공개 여부. 혹시나 해서 만듬. Public or Private
     val matchRef: DocumentReference? = null, // 팀에 대한 경로 없으면 null
-    var imageUrl : String? = ""
-)
-
-data class MatchTable(
-    var interest: String? = null,
-    var users: MutableList<DocumentReference>? = null,
-    var approvals: MutableList<String>? = null,
+    var imageUrl : String? = "",
+    val fcm_token: String? = ""
 )

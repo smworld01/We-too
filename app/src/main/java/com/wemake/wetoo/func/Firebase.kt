@@ -47,6 +47,7 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
 
     suspend fun matching() {
 //        if (uid === null) return null
+        Log.e("test", "test")
 
        db.collection("users").document(uid!!).get().addOnSuccessListener {
            val data = it.data?.get("interest")
@@ -78,6 +79,9 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
 
            }
 
+       }.addOnFailureListener {
+           Log.e("test", it.toString())
+           it.printStackTrace()
        }
     }
 
@@ -111,14 +115,8 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         }
     }
 
-    fun teamBuild(){
-//        여기에서 approvals의 값이 모두 수락이면 이제 team 문서로 옮기고 matching에 있는 것 삭제
-    }
-
     suspend fun isMatching():Boolean{
-        getUserProfile()?.result?.reference
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
-
 
 }
