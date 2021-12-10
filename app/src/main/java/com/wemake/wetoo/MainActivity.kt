@@ -47,10 +47,6 @@ class MainActivity : AppCompatActivity() {
         val scope = CoroutineScope(Job() + Dispatchers.Main)
 
         btnmat.setOnClickListener {
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/kdm
             if (matchingAsync == null) {
                 matchingAsync = scope.async {
                     Log.e("test", "0")
@@ -66,14 +62,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
             }
         }
-<<<<<<< HEAD
-=======
 
         btnmatch.setOnClickListener {
-            val intent = Intent(this,MatchingActivity::class.java)
-            startActivity(intent)
+
         }
 
->>>>>>> origin/kdm
     }
 }
