@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class MatchingActivity : AppCompatActivity() {
     lateinit var btnAgree : Button
     lateinit var btnDisagree : Button
+    lateinit var btnBack : ImageButton
     lateinit var db : Firebase
     var uid : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +22,7 @@ class MatchingActivity : AppCompatActivity() {
 
         btnAgree = findViewById(R.id.button4)
         btnDisagree = findViewById(R.id.button2)
+        btnBack = findViewById(R.id.back)
 
         val user = Auth(this)
         uid = user.getUid()
@@ -38,6 +40,10 @@ class MatchingActivity : AppCompatActivity() {
             scope.launch {
                 db.matchDisagree()
             }
+        }
+
+        btnBack.setOnClickListener {
+            finish()
         }
     }
 }

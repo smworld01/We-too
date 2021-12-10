@@ -118,7 +118,7 @@
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389"></TextView>
+        app:layout_constraintVertical_bias="0.389" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
         app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63"></TextView>
+        app:layout_constraintVertical_bias="0.63" />
 
     <TextView
         android:id="@+id/university"
@@ -171,7 +171,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/introduction"
@@ -199,7 +199,7 @@
         app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748"></TextView>
+        app:layout_constraintVertical_bias="0.748" />
 
     <Button
         android:id="@+id/btnsave"

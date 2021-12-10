@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var btnpro : Button
     lateinit var btnmat : Button
+    lateinit var btnmatch : Button
     lateinit var db : Firebase
     var uid : String? = null
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         btnpro = findViewById<Button>(R.id.button)
         btnmat = findViewById<Button>(R.id.button3)
+        btnmatch = findViewById<Button>(R.id.button5)
 
         val user = Auth(this)
         uid = user.getUid()
@@ -61,5 +63,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+
+        btnmatch.setOnClickListener {
+            val intent = Intent(this,MatchingActivity::class.java)
+            startActivity(intent)
+        }
+
+
 }
