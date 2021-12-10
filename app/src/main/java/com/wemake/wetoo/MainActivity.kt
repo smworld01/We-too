@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         val scope = CoroutineScope(Job() + Dispatchers.Main)
 
         btnmat.setOnClickListener {
-
             if (matchingAsync == null) {
                 matchingAsync = scope.async {
                     Log.e("test", "0")
@@ -65,9 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnmatch.setOnClickListener {
-            val intent = Intent(this,MatchingActivity::class.java)
-            startActivity(intent)
+
         }
-
-
+    }
 }
