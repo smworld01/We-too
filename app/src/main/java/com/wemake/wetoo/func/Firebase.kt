@@ -119,4 +119,8 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
 
+    suspend fun matchTeam() {
+
+    }
+
 }
