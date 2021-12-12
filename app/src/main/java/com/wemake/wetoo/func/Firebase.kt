@@ -14,6 +14,7 @@ import com.wemake.wetoo.data.UserProfile
 import kotlinx.coroutines.tasks.await
 import androidx.annotation.NonNull
 import com.google.firebase.firestore.FieldPath
+import com.google.firebase.firestore.auth.User
 
 
 class Firebase(private val activity: AppCompatActivity, private val uid: String?) {
@@ -123,18 +124,17 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
     }
 
 
-    fun getTeamUser(): Task<DocumentSnapshot>? {
-        db.collection("teams").get().addOnSuccessListener { result ->
-            for (document in result) {
-                val teamUser = document.get("users")
-                val a = arrayOf(teamUser)
-                Log.e("fds","${a.size}")
-                Log.e("asd", "$a")
-                Log.e("asd", "$teamUser")
+    suspend fun getTeamUser(): List<UserProfile?>? {
+        val myProfile = getUserProfile()?.await()
+        val profile = myProfile?.toObject<UserProfile>()!!
 
+        profile.matchRef?.get()?.await()?.apply {
+            val mt = toObject<MatchTable>()!!
+            return mt.users?.map {
+                it.get().await().toObject<UserProfile>()
             }
-
         }
+
         return null
     }
 

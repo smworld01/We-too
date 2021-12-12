@@ -67,8 +67,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnteam.setOnClickListener {
-            scope.async{
-                db.getTeamUser()
+            scope.launch{
+                // 모든 사람의 프로필 가져오기
+                val profiles = db.getTeamUser()
+
+                Log.e("test", profiles.toString())
+
+                // 0번째 사람의 이름 가져오기
+                Log.e("test", profiles?.map { it?.name }?.get(0)!!)
+                // 모든 사람의 카카오톡 오픈 아이디 가져오기
+                Log.e("test", profiles?.map { it?.ktoid }.toString())
             }
         }
 
