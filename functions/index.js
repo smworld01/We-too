@@ -51,14 +51,14 @@ exports.updateUser = functions.firestore
       if (newValue.approvals.every((x) => x != "waiting")) {
         if (newValue.approvals.every((x) => x == "agree")) {
           //매칭 완료
-          db.collection("teams").doc().set({ newValue });
+          db.collection("teams").doc().set(newValue);
           db.collection("matching").doc(context.params.matchId).delete();
 
           const payload = {
             data: {
               title: "팀 매칭 완료",
               body: `팀 매칭이 완료되었습니다. 서로의 카카오톡 ID를 확인하고 서로 연락하세요`,
-              clickAction: "MatchingActivity",
+              clickAction: "TeamActivity",
             },
           };
 

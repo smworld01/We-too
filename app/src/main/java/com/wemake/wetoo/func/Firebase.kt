@@ -12,6 +12,9 @@ import com.google.firebase.ktx.Firebase
 import com.wemake.wetoo.data.MatchTable
 import com.wemake.wetoo.data.UserProfile
 import kotlinx.coroutines.tasks.await
+import androidx.annotation.NonNull
+import com.google.firebase.firestore.FieldPath
+
 
 class Firebase(private val activity: AppCompatActivity, private val uid: String?) {
     private val db = Firebase.firestore
@@ -119,4 +122,21 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
 
+
+    fun getTeamUser(): Task<DocumentSnapshot>? {
+        db.collection("teams").get().addOnSuccessListener { result ->
+            for (document in result) {
+                val teamUser = document.get("users")
+                val a = arrayOf(teamUser)
+                Log.e("fds","${a.size}")
+                Log.e("asd", "$a")
+                Log.e("asd", "$teamUser")
+
+            }
+
+        }
+        return null
+    }
+
 }
+
