@@ -58,14 +58,15 @@ class MainActivity : AppCompatActivity() {
                     Log.e("test", "0")
                     if (db.isMatching()) {
                         Log.e("test", "1")
-                        Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "이미 매칭이 진행 중이에요", Toast.LENGTH_SHORT).show()
                     } else {
                         Log.e("test", "2")
+                        Toast.makeText(this@MainActivity, "매칭이 시작되었어요\n매칭이 완료되면 알림을 보내드릴게요.", Toast.LENGTH_SHORT).show()
                         db.matching()
                     }
                 }
             } else {
-                Toast.makeText(this@MainActivity, "이미 매칭중입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "이미 매칭이 진행 중이에요.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(applicationContext, MatchingActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@MainActivity, "매칭해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "아직 매칭이 진행 중이에요.\n매칭이 완료되면 알림을 보내드릴게요.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else{
-                    Toast.makeText(this@MainActivity, "아직 매칭이 진행중입니다..", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "아직 팀원들이 결정중이에요.\n조금만 더 기다려주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
