@@ -108,10 +108,6 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                     mt.approvals?.set(it, "disagree")
                 }
                 reference.update("approvals", mt.approvals)
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/gsh6451341
             }
         }
     }
@@ -120,40 +116,6 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
 
-<<<<<<< HEAD
-
-    suspend fun getTeamUser(): List<UserProfile?>? {
-        val myProfile = getUserProfile()?.await()
-        val profile = myProfile?.toObject<UserProfile>()!!
-
-        profile.matchRef?.get()?.await()?.apply {
-            val mt = toObject<MatchTable>()!!
-            return mt.users?.map {
-                it.get().await().toObject<UserProfile>()
-            }
-        }
-        return null
-    }
-
-    suspend fun userNumber(): Int? {
-        db.collection("users")
-            .get()
-            .addOnSuccessListener { result ->
-                Log.e("asd", "${result?.documents?.size}")
-            }
-            .addOnFailureListener { exception ->
-                Log.d("asdf", "Error getting documents: ", exception)
-            }
-        return null
-    }
-
-}
-
-    suspend fun matchTeam() {
-
-    }
-
-=======
     suspend fun isMatched():Boolean{
         val myProfile = getUserProfile()?.await()
         val profile = myProfile?.toObject<UserProfile>()!!
@@ -203,6 +165,5 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                 }
         }
     }
->>>>>>> origin/gsh6451341
 
 
