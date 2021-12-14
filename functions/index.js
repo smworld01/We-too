@@ -1,8 +1,11 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+<<<<<<< HEAD
 const firebase = require("firebase/app");
 const auth = require("firebase/auth");
 
+=======
+>>>>>>> origin/gsh6451341
 admin.initializeApp();
 
 const db = admin.firestore();
@@ -21,8 +24,11 @@ exports.updateUser = functions.firestore
 
     // access a particular field as you would any JS property
     const name = newValue.name;
+<<<<<<< HEAD
     // const auth = auth.get;
     // const user = auth.currentUser;
+=======
+>>>>>>> origin/gsh6451341
 
     if (previousValue.users.length == 3) {
       if (newValue.users.length > 3) {
@@ -39,6 +45,11 @@ exports.updateUser = functions.firestore
         );
         const tokens = results.map((result) => result.data().fcm_token);
 
+<<<<<<< HEAD
+=======
+        console.log(tokens);
+
+>>>>>>> origin/gsh6451341
         admin
           .messaging()
           .sendToDevice(tokens, payload)
@@ -54,15 +65,24 @@ exports.updateUser = functions.firestore
       if (newValue.approvals.every((x) => x != "waiting")) {
         if (newValue.approvals.every((x) => x == "agree")) {
           //매칭 완료
+<<<<<<< HEAD
           db.collection("matching")
             .doc(context.params.matchId)
             .update({ state: "matched" });
+=======
+          db.collection("teams").doc().set({ newValue });
+          db.collection("matching").doc(context.params.matchId).delete();
+>>>>>>> origin/gsh6451341
 
           const payload = {
             data: {
               title: "팀 매칭 완료",
               body: `팀 매칭이 완료되었습니다. 서로의 카카오톡 ID를 확인하고 서로 연락하세요`,
+<<<<<<< HEAD
               clickAction: "TeamActivity",
+=======
+              clickAction: "MatchingActivity",
+>>>>>>> origin/gsh6451341
             },
           };
 

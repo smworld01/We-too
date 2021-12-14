@@ -119,7 +119,11 @@
         app:layout_constraintHorizontal_bias="0.604"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.713" />
+=======
+        app:layout_constraintVertical_bias="0.714" />
+>>>>>>> origin/gsh6451341
 
     <TextView
         android:id="@+id/team4"

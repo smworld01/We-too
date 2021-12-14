@@ -6,10 +6,17 @@
     android:layout_height="match_parent">
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/tm4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+=======
+        android:id="@+id/team3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아무개"
+>>>>>>> origin/gsh6451341
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +39,17 @@
         app:layout_constraintVertical_bias="0.638" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/tm3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+=======
+        android:id="@+id/team2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아무개"
+>>>>>>> origin/gsh6451341
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,10 +85,17 @@
         app:layout_constraintVertical_bias="0.497" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/tm2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+=======
+        android:id="@+id/team1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아무개"
+>>>>>>> origin/gsh6451341
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,10 +131,17 @@
         app:layout_constraintVertical_bias="0.424" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/tm1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+=======
+        android:id="@+id/team4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아무개"
+>>>>>>> origin/gsh6451341
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,10 +151,17 @@
         app:layout_constraintVertical_bias="0.424" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/interest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+=======
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="android"
+>>>>>>> origin/gsh6451341
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
