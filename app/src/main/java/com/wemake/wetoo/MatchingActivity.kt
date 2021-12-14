@@ -3,9 +3,12 @@ package com.wemake.wetoo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -60,6 +63,29 @@ class MatchingActivity : AppCompatActivity() {
 
             val scope = CoroutineScope(Job() + Dispatchers.Main)
 
+            scope.launch{
+                // 모든 사람의 프로필 가져오기
+                val profiles = db.getTeamUser()
+
+                tm1.text = profiles?.map { it?.name }?.get(0)!!
+                tm1.setOnClickListener {
+                    showIntroduction( profiles?.map {it?.introduction}?.get(0)!! )
+                }
+                tm2.text = profiles?.map { it?.name }?.get(1)!!
+                tm2.setOnClickListener {
+                    showIntroduction( profiles?.map {it?.introduction}?.get(1)!! )
+                }
+                /*tm3.text = profiles?.map { it?.name }?.get(2)!!
+                tm4.text = profiles?.map { it?.name }?.get(3)!!*/
+
+                /*Log.e("test", profiles.toString())
+
+                // 0번째 사람의 이름 가져오기
+                Log.e("test", profiles?.map { it?.name }?.get(0)!!)
+                // 모든 사람의 카카오톡 오픈 아이디 가져오기
+                Log.e("test", profiles?.map { it?.ktoid }.toString())*/
+            }
+
             btnAgree.setOnClickListener {
                 scope.launch {
                     db.matchAgree()
@@ -76,5 +102,18 @@ class MatchingActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun showIntroduction(profiles : String) {
+        var dialogView = View.inflate(this, R.layout.alert_popup, null)
+        var dlg = AlertDialog.Builder(this)
+
+        var tv = dialogView.findViewById<TextView>(R.id.Tv)
+
+        dlg.setTitle("자기소개")
+        dlg.setView(dialogView)
+        tv.text = profiles
+        dlg.setNegativeButton("확인",null)
+        dlg.show()
     }
 }
