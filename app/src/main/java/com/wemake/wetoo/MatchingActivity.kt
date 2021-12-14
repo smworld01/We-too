@@ -75,8 +75,15 @@ class MatchingActivity : AppCompatActivity() {
                 tm2.setOnClickListener {
                     showIntroduction( profiles?.map {it?.introduction}?.get(1)!! )
                 }
-                /*tm3.text = profiles?.map { it?.name }?.get(2)!!
-                tm4.text = profiles?.map { it?.name }?.get(3)!!*/
+                tm3.text = profiles?.map { it?.name }?.get(2)!!
+                tm3.setOnClickListener {
+                    showIntroduction( profiles?.map {it?.introduction}?.get(2)!! )
+                }
+
+                tm4.text = profiles?.map { it?.name }?.get(3)!!
+                tm4.setOnClickListener {
+                    showIntroduction( profiles?.map {it?.introduction}?.get(3)!! )
+                }
 
                 /*Log.e("test", profiles.toString())
 

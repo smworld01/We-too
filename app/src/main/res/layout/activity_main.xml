@@ -13,6 +13,7 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:text="팀 정보"
+        android:background="@drawable/edit_round"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
