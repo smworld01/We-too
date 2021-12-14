@@ -10,17 +10,16 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="254dp"
+        android:layout_width="250dp"
         android:layout_height="70dp"
         android:text="팀 정보"
         android:textSize="25sp"
-        android:background="@drawable/edit_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.99" />
+        app:layout_constraintVertical_bias="0.993" />
 
     <TextView
         android:id="@+id/textView"
@@ -37,48 +36,48 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.039" />
 
+
     <Button
         android:id="@+id/button"
         android:layout_width="250dp"
         android:layout_height="70dp"
+        android:background="@drawable/edit_round"
         android:text="프로필 입력하기"
         android:textSize="25sp"
-        android:background="@drawable/edit_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:background="@drawable/edit_round"
         android:text="매칭정보"
         android:textSize="25sp"
-        android:background="@drawable/edit_round"
-        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859" />
+        app:layout_constraintVertical_bias="0.863" />
 
     <Button
-        android:background="@drawable/edit_round"
         android:id="@+id/button3"
         android:layout_width="250dp"
         android:layout_height="70dp"
+        android:background="@drawable/edit_round"
         android:text="매칭하기"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726" />
-
+        app:layout_constraintVertical_bias="0.72" />
 
     <TextView
         android:id="@+id/textView2"
@@ -101,10 +100,10 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.231" />
 
     <TextView
         android:id="@+id/textView4"
@@ -130,6 +129,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintVertical_bias="0.374" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

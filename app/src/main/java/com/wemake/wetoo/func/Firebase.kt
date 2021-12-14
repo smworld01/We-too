@@ -145,3 +145,9 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
 
 }
 
+    suspend fun matchTeam() {
+
+    }
+
+
+
