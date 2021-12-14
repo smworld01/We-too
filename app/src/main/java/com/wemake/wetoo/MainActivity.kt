@@ -8,10 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.wemake.wetoo.func.Auth
 import com.wemake.wetoo.func.Firebase
 import kotlinx.coroutines.*
-<<<<<<< HEAD
-=======
-import org.w3c.dom.Text
->>>>>>> origin/gsh6451341
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,11 +17,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnmatch : Button
     lateinit var btnteam : Button
     lateinit var db : Firebase
-<<<<<<< HEAD
-=======
     lateinit var tvuser : TextView
     lateinit var tvteams : TextView
->>>>>>> origin/gsh6451341
     var uid : String? = null
 
     private var matchingAsync : Deferred<Unit>? = null
@@ -35,11 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         val scope = CoroutineScope(Job() + Dispatchers.Main)
 
-<<<<<<< HEAD
-=======
         tvuser = findViewById(R.id.textView7)
         tvteams = findViewById(R.id.textView5)
->>>>>>> origin/gsh6451341
         btnpro = findViewById<Button>(R.id.button)
         btnmat = findViewById<Button>(R.id.button3)
         btnmatch = findViewById<Button>(R.id.button5)
@@ -50,13 +40,6 @@ class MainActivity : AppCompatActivity() {
         db = Firebase(this, uid)
 
 
-<<<<<<< HEAD
-        scope.launch {
-            db.userNumber()
-        }
-=======
-
->>>>>>> origin/gsh6451341
         if (user.isNotSignIn()) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -87,20 +70,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnmatch.setOnClickListener {
-<<<<<<< HEAD
-            val intent = Intent(this, MatchingActivity::class.java)
-            startActivity(intent)
-        }
-
-        btnteam.setOnClickListener {
-            scope.launch {
-                if (db.getTeamUser() == null) {
-                    Toast.makeText(this@MainActivity, "아직 매칭이 진행중입니다..", Toast.LENGTH_SHORT).show()
-                }else{
-                    val intent = Intent(this@MainActivity, TeamActivity::class.java)
-                    startActivity(intent)
-                }
-=======
             scope.launch {
                 if (db.isTemporaryMatched()) {
                     val intent = Intent(applicationContext, MatchingActivity::class.java)
@@ -131,7 +100,6 @@ class MainActivity : AppCompatActivity() {
             }
             db.userNumber {
                 tvuser.text = it.toString()
->>>>>>> origin/gsh6451341
             }
         }
 

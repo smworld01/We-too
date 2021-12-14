@@ -131,9 +131,7 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         val profile = myProfile?.toObject<UserProfile>()!!
         profile.matchRef?.get()?.await()?.apply {
             val mt = toObject<MatchTable>()!!
-            if (mt.users!!.size < 4) {
-                return true
-            }
+            return mt.users!!.size == 4
         }
         return false
     }
