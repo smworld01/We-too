@@ -51,7 +51,7 @@ class TeamActivity : AppCompatActivity() {
             val profiles = db.getTeamUser()
 
 //            Log.e("test", profiles.toString())
-            team1.text = profiles?.map { it?.name }?.get(0)!!
+            /*team1.text = profiles?.map { it?.name }?.get(0)!!
             team2.text = profiles?.map { it?.name }?.get(1)!!
             team3.text = profiles?.map { it?.name }?.get(2)!!
             team4.text = profiles?.map { it?.name }?.get(3)!!
@@ -59,7 +59,7 @@ class TeamActivity : AppCompatActivity() {
             team1kakao.text =  profiles?.map { it?.ktoid }?.get(0)!!
             team2kakao.text =  profiles?.map { it?.ktoid }?.get(1)!!
             team3kakao.text =  profiles?.map { it?.ktoid }?.get(2)!!
-            team4kakao.text =  profiles?.map { it?.ktoid }?.get(3)!!
+            team4kakao.text =  profiles?.map { it?.ktoid }?.get(3)!!*/
 
 //
 //            // 0번째 사람의 이름 가져오기
