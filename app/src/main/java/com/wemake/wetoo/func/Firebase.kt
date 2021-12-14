@@ -108,7 +108,10 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                     mt.approvals?.set(it, "disagree")
                 }
                 reference.update("approvals", mt.approvals)
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/gsh6451341
             }
         }
     }
@@ -117,6 +120,7 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
         return getUserProfile()?.await()?.get("matchRef")!=null
     }
 
+<<<<<<< HEAD
 
     suspend fun getTeamUser(): List<UserProfile?>? {
         val myProfile = getUserProfile()?.await()
@@ -149,5 +153,56 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
 
     }
 
+=======
+    suspend fun isMatched():Boolean{
+        val myProfile = getUserProfile()?.await()
+        val profile = myProfile?.toObject<UserProfile>()!!
+        profile.matchRef?.get()?.await()?.apply {
+            val mt = toObject<MatchTable>()!!
+            return mt.state == "matched"
+        }
+        return false
+    }
+
+    suspend fun isTemporaryMatched():Boolean {
+        val myProfile = getUserProfile()?.await()
+        val profile = myProfile?.toObject<UserProfile>()!!
+        profile.matchRef?.get()?.await()?.apply {
+            val mt = toObject<MatchTable>()!!
+            if (mt.users!!.size < 4) {
+                return true
+            }
+        }
+        return false
+    }
+
+        suspend fun getTeamUser(): List<UserProfile?>? {
+            val myProfile = getUserProfile()?.await()
+            val profile = myProfile?.toObject<UserProfile>()!!
+
+            profile.matchRef?.get()?.await()?.apply {
+                val mt = toObject<MatchTable>()!!
+                return mt.users?.map {
+                    it.get().await().toObject<UserProfile>()
+                }
+            }
+            return null
+        }
+
+        suspend fun userNumber(execute: (Int) -> Unit) {
+            db.collection("users")
+                .get().await().apply {
+                    execute(this.documents.size)
+                }
+        }
+
+        suspend fun teams(execute: (Int) -> Unit) {
+            db.collection("matching").whereEqualTo("state", "matched")
+                .get().await().apply {
+                    execute(this.documents.size)
+                }
+        }
+    }
+>>>>>>> origin/gsh6451341
 
 
