@@ -69,9 +69,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnmatch.setOnClickListener {
-
+            val intent = Intent(this, MatchingActivity::class.java)
+            startActivity(intent)
         }
-
 
         btnteam.setOnClickListener {
             scope.launch {
