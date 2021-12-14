@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // match /profiles/{uid} {
+    //   allow read, write: if uid == request.auth.uid;
+    //   allow read: if resource.data.visibility == "Public"
+    // }
+    
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

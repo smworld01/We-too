@@ -1,0 +1,67 @@
+[33mcommit 9d9bee417e3ceaf56bfd012e1df232f5638a66ea[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/gsh6451341[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 15 15:06:03 2021 +0900
+
+    prfile activity 추가
+
+[33mcommit 96ee79068cb2ca5d693c5dd9ce2c95e6dccbe448[m
+Author: kdm <wookdm@gmail.com>
+Date:   Fri Oct 15 15:00:43 2021 +0900
+
+    프로필
+
+[33mcommit 70182e4a8197fad0aa3cb73f8c4230e3791a9441[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 15 14:39:59 2021 +0900
+
+    로그인 안할 시 로그인 액티비티 실행 추가
+
+[33mcommit 60e9cf9185f7745bfef78839da38f711bcb7ce81[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 15 13:37:20 2021 +0900
+
+    merge 2021.10.15
+
+[33mcommit d4d2e2276e298a475ab254d4a97f8653410411e8[m
+Merge: a34dd94 75afa2b
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 15 13:05:19 2021 +0900
+
+    Merge remote-tracking branch 'origin/JIC'
+
+[33mcommit a34dd945456d3adf79fa1603aa8e85470b04bd47[m
+Merge: 74a482f 08cb997
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 15 13:05:05 2021 +0900
+
+    Merge branch 'ksm'
+
+[33mcommit 75afa2beb3574bb5e0bdc0ce2a4810c75248cad5[m[33m ([m[1;31morigin/jic[m[33m)[m
+Author: carryplz <qlshdh@naver.com>
+Date:   Fri Oct 15 12:15:44 2021 +0900
+
+    activity main & matching
+
+[33mcommit 08cb9973a52453ce64cbca346e93a82fbdfa1cab[m[33m ([m[1;31morigin/ksm[m[33m)[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 15 10:16:07 2021 +0900
+
+    프로필 읽기, 쓰기 기능 추가
+
+[33mcommit 74a482fa66042bcec9952102fbe42ff0c36e8389[m[33m ([m[1;31morigin/kdm[m[33m, [m[1;31morigin/SSeung98[m[33m)[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Fri Oct 8 13:44:00 2021 +0900
+
+    gitignore 변경
+
+[33mcommit 2e379d0b43d8a2f191d84ca351e233b16f55f151[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Thu Sep 30 20:52:10 2021 +0900
+
+    Firebase 추가
+
+[33mcommit 17041d254eb4d259e3e6ca6b912394ee8cd3527f[m
+Author: smworld01 <smworld01@naver.com>
+Date:   Thu Sep 30 20:35:58 2021 +0900
+
+    프로젝트 생성
