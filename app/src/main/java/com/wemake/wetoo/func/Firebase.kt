@@ -3,8 +3,6 @@ package com.wemake.wetoo.func
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -12,9 +10,6 @@ import com.google.firebase.ktx.Firebase
 import com.wemake.wetoo.data.MatchTable
 import com.wemake.wetoo.data.UserProfile
 import kotlinx.coroutines.tasks.await
-import androidx.annotation.NonNull
-import com.google.firebase.firestore.FieldPath
-import com.google.firebase.firestore.auth.User
 
 
 class Firebase(private val activity: AppCompatActivity, private val uid: String?) {
@@ -52,7 +47,6 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
     suspend fun matching() {
 //        if (uid === null) return null
         Log.e("test", "test")
-
        db.collection("users").document(uid!!).get().addOnSuccessListener {
            val data = it.data?.get("interest")
            Log.e("asd", "$data")
@@ -61,7 +55,7 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                Log.e("asd", "${value?.documents?.size}")
                value?.let { v ->
                    if (v.documents.size == 0) {
-                       val mt = MatchTable(data as String?, mutableListOf(it.reference), mutableListOf("waiting"))
+                       val mt = MatchTable(data as String?, mutableListOf(it.reference), mutableListOf("waiting"), "matching")
                        val collection = db.collection("matching")
                        collection.add(mt).addOnSuccessListener { documentReference ->
                            it.reference.update("matchRef", documentReference)
@@ -134,7 +128,18 @@ class Firebase(private val activity: AppCompatActivity, private val uid: String?
                 it.get().await().toObject<UserProfile>()
             }
         }
+        return null
+    }
 
+    suspend fun userNumber(): Int? {
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                Log.e("asd", "${result?.documents?.size}")
+            }
+            .addOnFailureListener { exception ->
+                Log.d("asdf", "Error getting documents: ", exception)
+            }
         return null
     }
 

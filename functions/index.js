@@ -1,5 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const firebase = require("firebase/app");
+const auth = require("firebase/auth");
+
 admin.initializeApp();
 
 const db = admin.firestore();
@@ -18,6 +21,8 @@ exports.updateUser = functions.firestore
 
     // access a particular field as you would any JS property
     const name = newValue.name;
+    // const auth = auth.get;
+    // const user = auth.currentUser;
 
     if (previousValue.users.length == 3) {
       if (newValue.users.length > 3) {
@@ -34,8 +39,6 @@ exports.updateUser = functions.firestore
         );
         const tokens = results.map((result) => result.data().fcm_token);
 
-        console.log(tokens);
-
         admin
           .messaging()
           .sendToDevice(tokens, payload)
@@ -51,8 +54,9 @@ exports.updateUser = functions.firestore
       if (newValue.approvals.every((x) => x != "waiting")) {
         if (newValue.approvals.every((x) => x == "agree")) {
           //매칭 완료
-          db.collection("teams").doc().set(newValue);
-          db.collection("matching").doc(context.params.matchId).delete();
+          db.collection("matching")
+            .doc(context.params.matchId)
+            .update({ state: "matched" });
 
           const payload = {
             data: {

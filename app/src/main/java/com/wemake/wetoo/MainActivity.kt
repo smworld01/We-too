@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val scope = CoroutineScope(Job() + Dispatchers.Main)
+
         btnpro = findViewById<Button>(R.id.button)
         btnmat = findViewById<Button>(R.id.button3)
         btnmatch = findViewById<Button>(R.id.button5)
@@ -33,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         uid = user.getUid()
         db = Firebase(this, uid)
 
+
+        scope.launch {
+            db.userNumber()
+        }
         if (user.isNotSignIn()) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -43,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val scope = CoroutineScope(Job() + Dispatchers.Main)
+
 
         btnmat.setOnClickListener {
             if (matchingAsync == null) {
@@ -67,16 +73,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnteam.setOnClickListener {
-            scope.launch{
-                // 모든 사람의 프로필 가져오기
-                val profiles = db.getTeamUser()
-
-                Log.e("test", profiles.toString())
-
-                // 0번째 사람의 이름 가져오기
-                Log.e("test", profiles?.map { it?.name }?.get(0)!!)
-                // 모든 사람의 카카오톡 오픈 아이디 가져오기
-                Log.e("test", profiles?.map { it?.ktoid }.toString())
+            scope.launch {
+                if (db.getTeamUser() == null) {
+                    Toast.makeText(this@MainActivity, "아직 매칭이 진행중입니다..", Toast.LENGTH_SHORT).show()
+                }else{
+                    val intent = Intent(this@MainActivity, TeamActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
