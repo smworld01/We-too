@@ -41,6 +41,7 @@ class ProfileActivity : AppCompatActivity() {
         fbFirestore = FirebaseFirestore.getInstance()
         fbStorage = FirebaseStorage.getInstance()
 
+
         val db = fbFirestore?.collection("users")?.document(fbAuth?.uid.toString())
 
         db?.get()?.addOnSuccessListener { documentSnapshot ->
@@ -153,6 +154,7 @@ class ProfileActivity : AppCompatActivity() {
         cancel.setOnClickListener {
             finish()
         }
+
     }
 
     private fun selectGallery() {

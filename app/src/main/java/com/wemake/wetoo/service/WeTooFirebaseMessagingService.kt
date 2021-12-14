@@ -14,10 +14,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.wemake.wetoo.MainActivity
-import com.wemake.wetoo.MatchingActivity
-import com.wemake.wetoo.ProfileActivity
-import com.wemake.wetoo.R
+import com.wemake.wetoo.*
 
 
 class WeTooFirebaseMessagingService : FirebaseMessagingService() {
@@ -58,7 +55,7 @@ class WeTooFirebaseMessagingService : FirebaseMessagingService() {
 
         val intent = when (remoteMessage.data["clickAction"].toString()) {
             "MatchingActivity" -> Intent(this, MatchingActivity::class.java)
-            "TeamActivity" -> Intent(this, ProfileActivity::class.java)
+            "TeamActivity" -> Intent(this, TeamActivity::class.java)
             else -> Intent(this, MainActivity::class.java)
         }
 
